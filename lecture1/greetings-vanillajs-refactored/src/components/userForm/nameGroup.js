@@ -2,14 +2,14 @@ function createNameInput() {
   const input = document.createElement("input");
   input.setAttribute("type", "text");
   input.setAttribute("class", "form-control");
-  input.setAttribute("id", "nameInput");
+  input.setAttribute("id", "name");
   input.setAttribute("placeholder", "Name");
   return input;
 }
 
 function createNameLabel() {
   const label = document.createElement("label");
-  label.setAttribute("for", "nameInput");
+  label.setAttribute("for", "name");
   label.innerText = "What is your name?";
   return label;
 }

@@ -1,6 +1,6 @@
 import { getDataFromForm } from "../../services/formUtils";
 import createNameGroup from "./nameGroup";
-import createAgeGroup from "./ageGroup";
+import createBirthdayGroup from "./birthdayGroup";
 import createSubmitButton from "./submitButton";
 
 function createUserForm({ onSubmit = () => {} } = {}) {
@@ -13,7 +13,7 @@ function createUserForm({ onSubmit = () => {} } = {}) {
 
   form.setAttribute("class", "user-form");
   form.appendChild(createNameGroup());
-  form.appendChild(createAgeGroup());
+  form.appendChild(createBirthdayGroup());
   form.appendChild(createSubmitButton(_onSubmit));
   return form;
 }
