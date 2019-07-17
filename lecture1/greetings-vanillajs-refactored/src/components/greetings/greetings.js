@@ -1,15 +1,14 @@
-import { daysToDate } from "../../services/date";
+import createGreetingsLabel from "./greetingsLabel";
+import createBackButton from "./greetingsBackButton";
 
-export default ({ name, birthday } = {}) => {
-  const userName = name || "User";
-  const days = daysToDate(birthday);
-  const birthdayText = birthday
-    ? days > 0
-      ? `It's ${days} days left until your birthday`
-      : "Happy Birthday!"
-    : "";
-
+export default ({ data = {}, onBack = () => {} } = {}) => {
   const container = document.createElement("div");
-  container.innerText = `Hello ${userName}! ${birthdayText}`;
+
+  const label = createGreetingsLabel(data);
+  const button = createBackButton(onBack);
+
+  container.appendChild(button);
+  container.appendChild(label);
+
   return container;
 };

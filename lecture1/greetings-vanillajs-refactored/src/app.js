@@ -7,7 +7,12 @@ function init() {
   const userForm = createUserForm({ onSubmit });
 
   function onSubmit(data) {
-    const greetings = createGreetings(data);
+    const greetings = createGreetings({ data, onBack });
+
+    function onBack() {
+      app.replaceChild(userForm, greetings);
+    }
+
     app.replaceChild(greetings, userForm);
   }
 
