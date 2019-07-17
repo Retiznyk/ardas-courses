@@ -1,9 +1,11 @@
+import { noop } from "../../services/utils";
 import { getDataFromForm } from "../../services/formUtils";
+
 import createNameGroup from "./nameGroup";
 import createBirthdayGroup from "./birthdayGroup";
 import createSubmitButton from "./submitButton";
 
-function createUserForm({ onSubmit = () => {} } = {}) {
+function createUserForm({ onSubmit = noop } = {}) {
   const form = document.createElement("form");
 
   const _onSubmit = e => {
