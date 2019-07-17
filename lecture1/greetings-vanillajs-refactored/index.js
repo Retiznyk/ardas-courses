@@ -1,3 +1,3 @@
 import app from "./src/app";
 
-app();
+app(document.getElementById("app"));

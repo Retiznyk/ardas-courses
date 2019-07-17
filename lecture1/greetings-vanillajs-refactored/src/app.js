@@ -2,21 +2,18 @@ import "./app.css";
 import createUserForm from "./components/userForm";
 import createGreetings from "./components/greetings";
 
-function init() {
-  const app = document.getElementById("app");
+export default function init(container) {
   const userForm = createUserForm({ onSubmit });
 
   function onSubmit(data) {
     const greetings = createGreetings({ data, onBack });
 
     function onBack() {
-      app.replaceChild(userForm, greetings);
+      container.replaceChild(userForm, greetings);
     }
 
-    app.replaceChild(greetings, userForm);
+    container.replaceChild(greetings, userForm);
   }
 
-  app.appendChild(userForm);
+  container.appendChild(userForm);
 }
-
-export default init;
