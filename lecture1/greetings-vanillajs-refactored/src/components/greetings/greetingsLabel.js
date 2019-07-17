@@ -10,9 +10,11 @@ function getTextByBirthday(name, date) {
   }
 
   const days = daysToDate(date);
-  return days !== 0
-    ? `Hello, ${name}! It's ${days} days left until your birthday`
-    : `Happy Birthday, ${name}!`;
+  const isBirthdayToday = days === 0;
+
+  return isBirthdayToday
+    ? `Happy Birthday, ${name}!`
+    : `Hello, ${name}! It's ${days} days left until your birthday`;
 }
 
 export default data => {
