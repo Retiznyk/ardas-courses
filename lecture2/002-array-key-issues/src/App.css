@@ -1,0 +1,15 @@
+.App {
+  display: flex;
+  flex-direction: column;
+}
+
+.items {
+  display: flex;
+  flex-direction: row;
+}
+
+button {
+  height: 10vh;
+  width: 15vw;
+  font-size: 24px;
+}

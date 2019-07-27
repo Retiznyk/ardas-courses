@@ -1,0 +1,17 @@
+.item {
+  height: 15vw;
+  width: 15vw;
+  margin: 10px;
+  text-align: center;
+  justify-content: center;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
+  font-size: 24px;
+}
+
+input {
+  height: 5vh;
+  width: 12vw;
+  font-size: 24px;
+}
