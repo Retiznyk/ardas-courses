@@ -14,6 +14,8 @@ import {
   signInByGoogle
 } from "../services/api";
 
+import "./Auth.css";
+
 const passwordSchema = new passwordValidator();
 
 passwordSchema
@@ -69,7 +71,7 @@ export default class Auth extends React.Component {
 
     this.setState(errors);
 
-    const hasErrors = Object.keys(errors).length;
+    const hasErrors = Object.values(errors).filter(Boolean).length;
 
     if (!hasErrors) {
       const credentials = { email, password };
