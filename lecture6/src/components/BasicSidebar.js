@@ -21,7 +21,7 @@ const useStyles = makeStyles(theme => ({
 const options = [
   {
     title: "Welcome",
-    path: "/"
+    path: "/welcome"
   },
   {
     title: "Users",

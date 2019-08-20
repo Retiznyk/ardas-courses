@@ -4,6 +4,6 @@ export const getUsers = () =>
   );
 
 export const getPostsByUser = userId =>
-  fetch(`https://jsonplaceholder.typicode.com/posts?userId${userId}`).then(
+  fetch(`https://jsonplaceholder.typicode.com/posts?userId=${userId}`).then(
     response => response.json()
   );

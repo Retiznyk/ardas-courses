@@ -1,40 +1,33 @@
 import React from "react";
-import { Redirect, Route } from "react-router-dom";
-
+import { Route, Redirect } from "react-router-dom";
 import auth from "../services/auth";
 
 export default class AuthRouter extends React.Component {
   state = {
     loading: true,
-    auth: auth.authenticated
+    auth: auth.authorized
   };
-
-  _watcher = null;
 
   componentDidMount() {
-    if (auth.authenticated) {
-      this.setState({ loading: false });
+    if (!auth.authorized) {
+      this._watcher = auth.onAuthStateChange(this.handleAuthStateChange);
     } else {
-      this._watcher = auth.onStateChange(this.onAuthStateChange);
+      this.setState({ loading: false });
     }
   }
 
-  componentWillUnmount() {
-    this.releaseWatchers();
-  }
+  releaseWatchers = () => this._watcher && this._watcher();
 
-  releaseWatchers = () => {
-    if (this._watcher) {
-      this._watcher();
+  handleAuthStateChange = value => {
+    if (value) {
+      this.setState({ auth: true, loading: false }, this.releaseWatchers);
+    } else {
+      this.setState({ loading: false });
     }
-  };
-
-  onAuthStateChange = val => {
-    this.setState({ auth: val, loading: false }, this.releaseWatchers);
   };
 
   render() {
-    const { loading, auth } = this.state;
+    const { auth, loading } = this.state;
 
     return loading ? (
       "Loading"

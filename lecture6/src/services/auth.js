@@ -1,48 +1,50 @@
 const STORAGE_KEY = "@auth-token";
 
 class Auth {
-  _authenticated = false;
+  _authorized = false;
   _cbs = [];
 
   constructor() {
     this.signInSilently();
   }
 
-  onStateChange = cb => {
-    this._cbs.push(cb);
-    return () => {
-      this._cbs = this._cbs.filter(cb);
-    };
-  };
-
-  get authenticated() {
-    return this._authenticated;
+  get authorized() {
+    return this._authorized;
   }
 
-  set authenticated(value) {
-    this._authenticated = value;
+  set authorized(value) {
+    this._authorized = value;
+
+    if (value) {
+      localStorage.setItem(STORAGE_KEY, value);
+    } else {
+      localStorage.removeItem(STORAGE_KEY);
+    }
+
     this._cbs.forEach(cb => cb(value));
-    localStorage.setItem(STORAGE_KEY, value);
   }
 
-  signInSilently = () => {
-    return Promise.resolve().then(() => {
-      this.authenticated = localStorage.getItem(STORAGE_KEY) === "true";
-    });
+  onAuthStateChange = cb => {
+    this._cbs.push(cb);
+    return () => this._cbs.filter(c => c === cb);
   };
 
-  signIn = () => {
-    return Promise.resolve(Math.random()) // emulate api request
-      .then(() => {
-        this.authenticated = true;
-      });
-  };
-
-  signOut = () => {
+  signInSilently() {
     return Promise.resolve().then(() => {
-      this.authenticated = false;
+      const value = localStorage.getItem(STORAGE_KEY);
+      this.authorized = value;
     });
-  };
+  }
+
+  signIn(credentials) {
+    return new Promise(resolve => {
+      setTimeout(() => resolve(Math.random()), 1000);
+    }).then(token => (this.authorized = token));
+  }
+
+  signOut() {
+    return Promise.resolve().then(() => (this.authorized = false));
+  }
 }
 
 export default new Auth();

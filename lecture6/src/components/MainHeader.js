@@ -1,4 +1,5 @@
 import React from "react";
+import { withRouter } from "react-router-dom";
 import { makeStyles } from "@material-ui/core/styles";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
@@ -27,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-export default ({ history }) => {
+const MainHeader = ({ history }) => {
   const classes = useStyles();
 
   return (
@@ -42,8 +43,8 @@ export default ({ history }) => {
         <Typography
           variant="button"
           className={classes.logout}
-          noWrap
           onClick={() => auth.signOut().then(() => history.replace("/login"))}
+          noWrap
         >
           Logout
         </Typography>
@@ -51,3 +52,5 @@ export default ({ history }) => {
     </AppBar>
   );
 };
+
+export default withRouter(MainHeader);

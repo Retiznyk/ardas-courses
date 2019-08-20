@@ -11,8 +11,8 @@ const Container = styled.div`
   justify-content: center;
 `;
 
-export default props => (
+export default ({ history }) => (
   <Container>
-    <AuthButton onAuth={() => props.history.push("/")} />
+    <AuthButton onAuth={() => history.push("/")} />
   </Container>
 );
