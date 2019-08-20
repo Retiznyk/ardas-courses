@@ -7,3 +7,4 @@
 - [#3 React patters (HOC, Render-props, Context)](https://github.com/Retiznyk/ardas-courses/tree/master/lecture3)
 - [#4 React state management (Redux)](https://github.com/Retiznyk/ardas-courses/tree/master/lecture4)
 - [#5 Redux-saga](https://github.com/Retiznyk/ardas-courses/tree/master/lecture5)
+- [#6 Routing](https://github.com/Retiznyk/ardas-courses/tree/master/lecture6)
